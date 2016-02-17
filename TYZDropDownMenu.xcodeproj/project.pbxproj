@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C6CFCA21C717902008FA57C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6CFCA11C717902008FA57C /* main.m */; };
+		9C6CFCA51C717902008FA57C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6CFCA41C717902008FA57C /* AppDelegate.m */; };
+		9C6CFCA81C717902008FA57C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6CFCA71C717902008FA57C /* ViewController.m */; };
+		9C6CFCAB1C717902008FA57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6CFCA91C717902008FA57C /* Main.storyboard */; };
+		9C6CFCAD1C717902008FA57C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C6CFCAC1C717902008FA57C /* Assets.xcassets */; };
+		9C6CFCB01C717902008FA57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6CFCAE1C717902008FA57C /* LaunchScreen.storyboard */; };
+		9C6CFCB81C717969008FA57C /* DemoData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C6CFCB71C717969008FA57C /* DemoData.plist */; };
+		9CDACD291C743A5B0050DC61 /* TYDropDownMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */; };
+		9CDACD2A1C743A5B0050DC61 /* TYDropDownMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */; };
+		9CDACD2C1C743A5B0050DC61 /* TYDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */; };
+		9CDACD2D1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD251C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m */; };
+		9CDACD2E1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD261C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib */; };
+		9CDACD2F1C743A5B0050DC61 /* TYDropDownTopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */; };
+		9CDACD321C7442D80050DC61 /* arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD311C7442D80050DC61 /* arrow_down@2x.png */; };
+		9CDACD341C7442DF0050DC61 /* arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD331C7442DF0050DC61 /* arrow_up@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9C6CFC9D1C717902008FA57C /* TYZDropDownMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYZDropDownMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C6CFCA11C717902008FA57C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9C6CFCA31C717902008FA57C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9C6CFCA41C717902008FA57C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9C6CFCA61C717902008FA57C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9C6CFCA71C717902008FA57C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9C6CFCAA1C717902008FA57C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C6CFCAC1C717902008FA57C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C6CFCAF1C717902008FA57C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9C6CFCB11C717902008FA57C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C6CFCB71C717969008FA57C /* DemoData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DemoData.plist; sourceTree = "<group>"; };
+		9CDACD1D1C743A5B0050DC61 /* TYDropDownMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenuCell.h; sourceTree = "<group>"; };
+		9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenuCell.m; sourceTree = "<group>"; };
+		9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TYDropDownMenuCell.xib; sourceTree = "<group>"; };
+		9CDACD221C743A5B0050DC61 /* TYDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenu.h; sourceTree = "<group>"; };
+		9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenu.m; sourceTree = "<group>"; };
+		9CDACD241C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenuCollectionHeader.h; sourceTree = "<group>"; };
+		9CDACD251C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenuCollectionHeader.m; sourceTree = "<group>"; };
+		9CDACD261C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TYDropDownMenuCollectionHeader.xib; sourceTree = "<group>"; };
+		9CDACD271C743A5B0050DC61 /* TYDropDownTopItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownTopItem.h; sourceTree = "<group>"; };
+		9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownTopItem.m; sourceTree = "<group>"; };
+		9CDACD301C743C860050DC61 /* TYDropDownMenuConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenuConfig.h; sourceTree = "<group>"; };
+		9CDACD311C7442D80050DC61 /* arrow_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_down@2x.png"; sourceTree = "<group>"; };
+		9CDACD331C7442DF0050DC61 /* arrow_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_up@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C6CFC9A1C717902008FA57C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C6CFC941C717901008FA57C = {
+			isa = PBXGroup;
+			children = (
+				9CDACD1C1C743A5B0050DC61 /* TYZDropDownMenuView */,
+				9C6CFC9F1C717902008FA57C /* TYZDropDownMenu */,
+				9C6CFC9E1C717902008FA57C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C6CFC9E1C717902008FA57C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C6CFC9D1C717902008FA57C /* TYZDropDownMenu.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C6CFC9F1C717902008FA57C /* TYZDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				9C6CFCA31C717902008FA57C /* AppDelegate.h */,
+				9C6CFCA41C717902008FA57C /* AppDelegate.m */,
+				9C6CFCA61C717902008FA57C /* ViewController.h */,
+				9C6CFCA71C717902008FA57C /* ViewController.m */,
+				9C6CFCA91C717902008FA57C /* Main.storyboard */,
+				9C6CFCAC1C717902008FA57C /* Assets.xcassets */,
+				9C6CFCAE1C717902008FA57C /* LaunchScreen.storyboard */,
+				9C6CFCB11C717902008FA57C /* Info.plist */,
+				9C6CFCA01C717902008FA57C /* Supporting Files */,
+				9C6CFCB71C717969008FA57C /* DemoData.plist */,
+			);
+			path = TYZDropDownMenu;
+			sourceTree = "<group>";
+		};
+		9C6CFCA01C717902008FA57C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9C6CFCA11C717902008FA57C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CDACD1C1C743A5B0050DC61 /* TYZDropDownMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				9CDACD331C7442DF0050DC61 /* arrow_up@2x.png */,
+				9CDACD311C7442D80050DC61 /* arrow_down@2x.png */,
+				9CDACD1D1C743A5B0050DC61 /* TYDropDownMenuCell.h */,
+				9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */,
+				9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */,
+				9CDACD221C743A5B0050DC61 /* TYDropDownMenu.h */,
+				9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */,
+				9CDACD241C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.h */,
+				9CDACD251C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m */,
+				9CDACD261C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib */,
+				9CDACD271C743A5B0050DC61 /* TYDropDownTopItem.h */,
+				9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */,
+				9CDACD301C743C860050DC61 /* TYDropDownMenuConfig.h */,
+			);
+			path = TYZDropDownMenuView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C6CFC9C1C717902008FA57C /* TYZDropDownMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C6CFCB41C717902008FA57C /* Build configuration list for PBXNativeTarget "TYZDropDownMenu" */;
+			buildPhases = (
+				9C6CFC991C717902008FA57C /* Sources */,
+				9C6CFC9A1C717902008FA57C /* Frameworks */,
+				9C6CFC9B1C717902008FA57C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TYZDropDownMenu;
+			productName = TYZDropDownMenu;
+			productReference = 9C6CFC9D1C717902008FA57C /* TYZDropDownMenu.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C6CFC951C717901008FA57C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Tywin;
+				TargetAttributes = {
+					9C6CFC9C1C717902008FA57C = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 9C6CFC981C717901008FA57C /* Build configuration list for PBXProject "TYZDropDownMenu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C6CFC941C717901008FA57C;
+			productRefGroup = 9C6CFC9E1C717902008FA57C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C6CFC9C1C717902008FA57C /* TYZDropDownMenu */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C6CFC9B1C717902008FA57C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CDACD2A1C743A5B0050DC61 /* TYDropDownMenuCell.xib in Resources */,
+				9CDACD321C7442D80050DC61 /* arrow_down@2x.png in Resources */,
+				9C6CFCB01C717902008FA57C /* LaunchScreen.storyboard in Resources */,
+				9CDACD341C7442DF0050DC61 /* arrow_up@2x.png in Resources */,
+				9C6CFCAD1C717902008FA57C /* Assets.xcassets in Resources */,
+				9CDACD2E1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib in Resources */,
+				9C6CFCAB1C717902008FA57C /* Main.storyboard in Resources */,
+				9C6CFCB81C717969008FA57C /* DemoData.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C6CFC991C717902008FA57C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C6CFCA81C717902008FA57C /* ViewController.m in Sources */,
+				9C6CFCA51C717902008FA57C /* AppDelegate.m in Sources */,
+				9CDACD2F1C743A5B0050DC61 /* TYDropDownTopItem.m in Sources */,
+				9CDACD2C1C743A5B0050DC61 /* TYDropDownMenu.m in Sources */,
+				9CDACD2D1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m in Sources */,
+				9CDACD291C743A5B0050DC61 /* TYDropDownMenuCell.m in Sources */,
+				9C6CFCA21C717902008FA57C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9C6CFCA91C717902008FA57C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C6CFCAA1C717902008FA57C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9C6CFCAE1C717902008FA57C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C6CFCAF1C717902008FA57C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C6CFCB21C717902008FA57C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9C6CFCB31C717902008FA57C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C6CFCB51C717902008FA57C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TYZDropDownMenu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Tywin.TYZDropDownMenu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9C6CFCB61C717902008FA57C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TYZDropDownMenu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Tywin.TYZDropDownMenu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C6CFC981C717901008FA57C /* Build configuration list for PBXProject "TYZDropDownMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C6CFCB21C717902008FA57C /* Debug */,
+				9C6CFCB31C717902008FA57C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C6CFCB41C717902008FA57C /* Build configuration list for PBXNativeTarget "TYZDropDownMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C6CFCB51C717902008FA57C /* Debug */,
+				9C6CFCB61C717902008FA57C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C6CFC951C717901008FA57C /* Project object */;
+}

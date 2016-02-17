@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>group_1</key>
+	<array>
+		<string>data1_1</string>
+		<string>data1_2</string>
+		<string>data1_3</string>
+		<string>data1_4</string>
+		<string>data1_5</string>
+	</array>
+	<key>group_2</key>
+	<array>
+		<string>data2_1</string>
+		<string>data2_2</string>
+		<string>data2_3</string>
+		<string>data2_4</string>
+		<string>data2_5</string>
+		<string>data2_6</string>
+	</array>
+	<key>group_3</key>
+	<array>
+		<string>data3_1</string>
+		<string>data3_2</string>
+		<string>data3_3</string>
+		<string>data3_4</string>
+		<string>data3_5</string>
+	</array>
+	<key>group_4</key>
+	<array>
+		<string>data4_1</string>
+		<string>data4_2</string>
+		<string>data4_3</string>
+		<string>data4_4</string>
+		<string>data4_5</string>
+	</array>
+	<key>group_5</key>
+	<array>
+		<string>data5_1</string>
+		<string>data5_2</string>
+		<string>data5_3</string>
+		<string>data5_4</string>
+		<string>data5_5</string>
+	</array>
+	<key>group_6</key>
+	<array>
+		<string>data6_1</string>
+		<string>data6_2</string>
+		<string>data6_3</string>
+		<string>data6_4</string>
+		<string>data6_5</string>
+	</array>
+	<key>group_7</key>
+	<array>
+		<string>data7_1</string>
+		<string>data7_2</string>
+		<string>data7_3</string>
+		<string>data7_4</string>
+		<string>data7_5</string>
+	</array>
+</dict>
+</plist>

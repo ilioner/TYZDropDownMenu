@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="TYDropDownMenuCollectionHeader">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WhE-Wy-FcY">
+                    <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miC-dg-yAX">
+                    <rect key="frame" x="8" y="13" width="289" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="WhE-Wy-FcY" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="43" id="O8L-fp-KFD"/>
+                <constraint firstItem="WhE-Wy-FcY" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="Qka-sv-ZQg"/>
+                <constraint firstAttribute="trailing" secondItem="WhE-Wy-FcY" secondAttribute="trailing" id="Uk2-UT-nQk"/>
+                <constraint firstAttribute="bottom" secondItem="WhE-Wy-FcY" secondAttribute="bottom" id="b6a-hE-EgF"/>
+            </constraints>
+            <connections>
+                <outlet property="_titleLabel" destination="miC-dg-yAX" id="cgy-3U-e3P"/>
+            </connections>
+            <point key="canvasLocation" x="227" y="332"/>
+        </collectionReusableView>
+    </objects>
+</document>
