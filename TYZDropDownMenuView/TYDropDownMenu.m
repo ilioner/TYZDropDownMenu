@@ -51,8 +51,6 @@
         _Level1TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_mainMenuView addSubview:_Level1TableView];
         
-        
-        
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         
         _subCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_Level1TableView.frame), 0, _mainMenuView.frame.size.width-CGRectGetMaxX(_Level1TableView.frame), CGRectGetHeight(_Level1TableView.frame)) collectionViewLayout:flowLayout];
@@ -113,6 +111,7 @@
     [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_list"] forState:UIControlStateNormal];
     [_styleButton addTarget:self action:@selector(onStyleChanged:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_styleButton];
+    
     UIView *line_view_bottom = [[UIView alloc] initWithFrame:CGRectMake(0, 34, frame.size.width, 1)];
     line_view_bottom.backgroundColor = RGB(235, 235, 235);
     [_topView addSubview:line_view_bottom];
@@ -148,8 +147,6 @@
 - (void)loadConfig{
     _currentSelectLevel1 = 0;
     [self configCollectionCell];
-    [_Level1TableView reloadData];
-    [_Level1TableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)configCollectionCell{
@@ -176,11 +173,6 @@
 }
 
 - (void)itemClick{
-    if (_currentKind == DropDownMenuHidden) {
-        _currentKind = DropDownMenuShow;
-    }else{
-        _currentKind = DropDownMenuHidden;
-    }
     
     if (_currentItem == _all) {
         [_new setStatus:DropDownMenuUp];
@@ -188,6 +180,7 @@
         [_level setStatus:DropDownMenuUp];
         _mainMenuView.hidden = NO;
         [_Level1TableView reloadData];
+        [_Level1TableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         _otherMenuTableView.hidden = YES;
     }else if (_currentItem == _new){
         [_all setStatus:DropDownMenuUp];
@@ -216,6 +209,11 @@
         _otherMenuTableView.backgroundColor = [UIColor whiteColor];
         _otherMenuTableView.hidden = NO;
         [_otherMenuTableView reloadData];
+    }
+    if (_currentKind == DropDownMenuHidden) {
+        _currentKind = DropDownMenuShow;
+    }else{
+        _currentKind = DropDownMenuHidden;
     }
     
     [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
