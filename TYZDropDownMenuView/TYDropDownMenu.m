@@ -57,6 +57,7 @@
         self.backgroundColor = BACKGROUND_WHITE_COLOR;
         
         _currentKind = DropDownMenuHidden;
+        _currentStyleKind = kStyle_grid;
         
     }
     return self;
@@ -65,28 +66,32 @@
 - (void)initTopButtons:(CGRect)frame
 {
     _currenSelectKind = @"全部类别";
-    _all= [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(0, -1, frame.size.width/4, 36)];
+    _all= [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(0, -1, frame.size.width/4-9, 36)];
     _all.layer.borderWidth = 1;
     _all.layer.borderColor = RGB(235, 235, 235).CGColor;
     _all.delegate = self;
     [_all setItemTitle:_currenSelectKind];
     [_topView addSubview:_all];
     
-    _new = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_all.frame), -1, frame.size.width/4, 36)];
+    _new = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_all.frame), -1, frame.size.width/4-9, 36)];
     _new.delegate = self;
     [_new setItemTitle:@"最新"];
     [_topView addSubview:_new];
     
-    _kind = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_new.frame), -1, frame.size.width/4, 36)];
+    _kind = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_new.frame), -1, frame.size.width/4-9, 36)];
     _kind.delegate = self;
     [_kind setItemTitle:@"类型"];
     [_topView addSubview:_kind];
     
-    _level = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_kind.frame), -1, frame.size.width/4, 36)];
+    _level = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_kind.frame), -1, frame.size.width/4-9, 36)];
     _level.delegate = self;
-    [_kind setItemTitle:@"等级"];
-    [_level setItemTitle:_currenSelectKind];
+    [_level setItemTitle:@"等级"];
     [_topView addSubview:_level];
+    
+    _styleButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_level.frame), 0, 36, 36)];
+    [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_list"] forState:UIControlStateNormal];
+    [_styleButton addTarget:self action:@selector(onStyleChanged:) forControlEvents:UIControlEventTouchUpInside];
+    [_topView addSubview:_styleButton];
 }
 
 - (void)setDataSource:(NSMutableDictionary *)dataSource
@@ -97,6 +102,17 @@
                                return [a localizedCompare: b];
                            }];
     [_Level1TableView reloadData];
+}
+
+- (void)onStyleChanged:(UIButton *)sender
+{
+    if (_currentStyleKind == kStyle_grid) {
+        _currentStyleKind = kStyle_list;
+        [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_grid"] forState:UIControlStateNormal];
+    }else{
+        _currentStyleKind = kStyle_grid;
+        [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_list"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)loadCurrentCollectionDataArrayByKey:(NSString *)key

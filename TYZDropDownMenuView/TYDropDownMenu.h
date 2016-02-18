@@ -12,6 +12,13 @@ typedef enum : NSUInteger {
     DropDownMenuShow,
     DropDownMenuHidden
 } TYDropDownMenuShowKind;
+
+typedef enum : NSUInteger {
+    kStyle_grid,
+    kStyle_list
+} TYDropDownMenuStyleChangeKind;
+
+
 @protocol TYDropDownMenuDelegate;
 @interface TYDropDownMenu : UIView
 {
@@ -23,11 +30,13 @@ typedef enum : NSUInteger {
     UIView *_topView;
     UIButton *_bottomButton;
     TYDropDownMenuShowKind _currentKind;
+    TYDropDownMenuStyleChangeKind _currentStyleKind;
     NSString *_currenSelectKind;
     TYDropDownTopItem *_all;
     TYDropDownTopItem *_new;
     TYDropDownTopItem *_kind;
     TYDropDownTopItem *_level;
+    UIButton *_styleButton;
 }
 @property (nonatomic, weak) id<TYDropDownMenuDelegate> delegate;
 @property (nonatomic, strong) NSMutableDictionary *dataSource;
