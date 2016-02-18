@@ -306,15 +306,36 @@
         NSString *itemName = nil;
         if (_currentItem == _new) {
             itemName = MENU_FRO_NEW[indexPath.row];
+            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:@"收起"]) {
+                cell.textLabel.textAlignment = NSTextAlignmentCenter;
+                cell.backgroundColor = RGBA(244, 244, 244, 1);
+            }else{
+                cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                cell.backgroundColor = [UIColor whiteColor];
+            }
         }else if (_currentItem == _kind){
             itemName = MENU_FRO_CATE[indexPath.row];
+            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:@"收起"]) {
+                cell.textLabel.textAlignment = NSTextAlignmentCenter;
+                cell.backgroundColor = RGBA(244, 244, 244, 1);
+            }else{
+                cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                cell.backgroundColor = [UIColor whiteColor];
+            }
         }else if (_currentItem == _level) {
             itemName = MENU_FOR_LEVEL[indexPath.row];
+            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:@"收起"]) {
+                cell.textLabel.textAlignment = NSTextAlignmentCenter;
+                cell.backgroundColor = RGBA(244, 244, 244, 1);
+            }else{
+                cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                cell.backgroundColor = [UIColor whiteColor];
+            }
         }
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@",itemName];
         cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
-        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        
         return cell;
     }
 }
@@ -325,7 +346,27 @@
     if (_currentItem == _all) {
         return 44.0f;
     }else{
-        return ROW_H;
+        if (_currentItem == _new) {
+            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:@"收起"]) {
+                return BOTTOM_BUTTON_H;
+            }else{
+                return ROW_H;
+            }
+        }else if (_currentItem ==_kind){
+        
+            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:@"收起"]) {
+                return BOTTOM_BUTTON_H;
+            }else{
+                return ROW_H;
+            }
+            
+        }else{
+            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:@"收起"]) {
+                return BOTTOM_BUTTON_H;
+            }else{
+                return ROW_H;
+            }
+        }
     }
 }
 
