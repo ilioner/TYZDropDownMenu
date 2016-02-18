@@ -13,12 +13,20 @@ typedef enum : NSUInteger {
     DropDownMenuDown
 } TYDropDownTopItemStatus;
 
+typedef enum : NSUInteger {
+    kSideLine_left,
+    kSideLine_right,
+    kSideLine_none
+} TYDropDownTopItemSideLineStyle;
+
 @protocol TYDropDownTopItemDelegate;
 @interface TYDropDownTopItem : UIView
 
 @property (nonatomic, assign) TYDropDownTopItemStatus status;
 @property (nonatomic, weak) id<TYDropDownTopItemDelegate> delegate;
+@property (nonatomic, assign) TYDropDownTopItemSideLineStyle sideLineStyle;
 
+- (instancetype)initWithFrame:(CGRect)frame withLineSide:(TYDropDownTopItemSideLineStyle)lineSide;
 - (void)setItemTitle:(NSString *)title;
 
 @end

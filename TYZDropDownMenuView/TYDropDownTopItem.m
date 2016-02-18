@@ -19,7 +19,7 @@
 @end
 @implementation TYDropDownTopItem
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame withLineSide:(TYDropDownTopItemSideLineStyle)lineSide
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -35,12 +35,11 @@
         
         _currentStatus = DropDownMenuDown;
         
-        self.layer.borderWidth = 1;
-        self.layer.borderColor = [UIColor colorWithRed:235 green:235 blue:235 alpha:1.0f].CGColor;
-        
         UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickThis:)];
         tapAction.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapAction];
+        self.sideLineStyle = lineSide;
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -49,6 +48,29 @@
 {
     _currentStatus = DropDownMenuDown;
     _arrowImage.image = [UIImage imageNamed:@"arrow_down"];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    if (self.sideLineStyle != kSideLine_none) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, 1);
+        CGContextSetAllowsAntialiasing(context, true);
+        CGContextSetRGBStrokeColor(context, 235.0 / 255.0, 235.0 / 255.0, 235.0 / 255.0, 1.0);
+        CGContextBeginPath(context);
+        
+        if (self.sideLineStyle == kSideLine_left) {
+            CGContextMoveToPoint(context, 0, 8);
+            CGContextAddLineToPoint(context, 0, self.frame.size.height-8);
+        }else{
+            CGContextMoveToPoint(context, self.frame.size.width-1, 8);
+            CGContextAddLineToPoint(context, self.frame.size.width-1, self.frame.size.height-8);
+            
+        }
+        CGContextStrokePath(context);
+    }
 }
 
 - (void)setItemTitle:(NSString *)title

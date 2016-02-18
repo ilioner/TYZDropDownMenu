@@ -66,32 +66,33 @@
 - (void)initTopButtons:(CGRect)frame
 {
     _currenSelectKind = @"全部类别";
-    _all= [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(0, -1, frame.size.width/4-9, 36)];
-    _all.layer.borderWidth = 1;
-    _all.layer.borderColor = RGB(235, 235, 235).CGColor;
+    _all= [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(0, 0, frame.size.width/4-9, 36) withLineSide:kSideLine_right];
     _all.delegate = self;
     [_all setItemTitle:_currenSelectKind];
     [_topView addSubview:_all];
     
-    _new = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_all.frame), -1, frame.size.width/4-9, 36)];
+    _new = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_all.frame)-1, -1, frame.size.width/4-9, 36) withLineSide:kSideLine_right];
     _new.delegate = self;
     [_new setItemTitle:@"最新"];
     [_topView addSubview:_new];
     
-    _kind = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_new.frame), -1, frame.size.width/4-9, 36)];
+    _kind = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_new.frame), -1, frame.size.width/4-9, 36) withLineSide:kSideLine_right];
     _kind.delegate = self;
     [_kind setItemTitle:@"类型"];
     [_topView addSubview:_kind];
     
-    _level = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_kind.frame), -1, frame.size.width/4-9, 36)];
+    _level = [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_kind.frame), -1, frame.size.width/4-9, 36) withLineSide:kSideLine_none];
     _level.delegate = self;
     [_level setItemTitle:@"等级"];
     [_topView addSubview:_level];
     
     _styleButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_level.frame), 0, 36, 36)];
-    [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_list"] forState:UIControlStateNormal];
+    [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_grid"] forState:UIControlStateNormal];
     [_styleButton addTarget:self action:@selector(onStyleChanged:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_styleButton];
+    UIView *line_view = [[UIView alloc] initWithFrame:CGRectMake(0, 34, frame.size.width, 1)];
+    line_view.backgroundColor = RGB(235, 235, 235);
+    [_topView addSubview:line_view];
 }
 
 - (void)setDataSource:(NSMutableDictionary *)dataSource
