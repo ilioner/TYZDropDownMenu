@@ -18,6 +18,9 @@ typedef enum : NSUInteger {
     kStyle_list
 } TYDropDownMenuStyleChangeKind;
 
+#define MENU_FRO_NEW    @[@"最新",@"最热"]
+#define MENU_FRO_CATE   @[@"全部",@"知识精讲",@"项目实践"]
+#define MENU_FOR_LEVEL  @[@"全部",@"初级",@"中级",@"高级"]
 
 @protocol TYDropDownMenuDelegate;
 @interface TYDropDownMenu : UIView
@@ -26,6 +29,7 @@ typedef enum : NSUInteger {
     NSArray *_current_collectionData_array;
     NSInteger _currentSelectLevel1;
     UITableView *_Level1TableView;
+    UITableView *_otherMenuTableView;
     UICollectionView *_subCollectionView;
     UIView *_topView;
     UIView *_mainMenuView;

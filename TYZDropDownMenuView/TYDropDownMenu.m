@@ -50,6 +50,14 @@
         _Level1TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_mainMenuView addSubview:_Level1TableView];
         
+        _otherMenuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, _mainMenuView.frame.size.width, 0) style:UITableViewStylePlain];
+        _otherMenuTableView.dataSource = self;
+        _otherMenuTableView.delegate = self;
+        _otherMenuTableView.showsVerticalScrollIndicator = NO;
+        _otherMenuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_mainMenuView addSubview:_otherMenuTableView];
+        _otherMenuTableView.hidden = YES;
+        
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         
         _subCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_Level1TableView.frame), 0, _mainMenuView.frame.size.width-CGRectGetMaxX(_Level1TableView.frame), CGRectGetHeight(_Level1TableView.frame)) collectionViewLayout:flowLayout];
@@ -58,8 +66,6 @@
         _subCollectionView.backgroundColor = BACKGROUND_WHITE_COLOR;
         [_mainMenuView addSubview:_subCollectionView];
         [self loadConfig];
-        self.backgroundColor = [UIColor blueColor];
-        
         
         [self addSubview:_topView];
         [self initTopButtons:self.frame];
@@ -177,7 +183,7 @@
 - (void)menuDisplayOrNotBy:(TYDropDownMenuShowKind)showKind currentItem:(TYDropDownTopItem *)item
 {
     __block CGRect rect = self.frame;
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.15f animations:^{
         if ( _currentKind == DropDownMenuShow) {
             rect.size.height = 385.0f;
         }else{
@@ -309,8 +315,13 @@
 - (void)onItemClick:(TYDropDownTopItem *)item
 {
     _currentItem = item;
-    if (item == _all) {
-        [self buttonClick];
+    [self buttonClick];
+    if (item != _all) {
+        _mainMenuView.hidden = YES;
+        _bottomButton.hidden = YES;
+    }else{
+        _mainMenuView.hidden = NO;
+        _bottomButton.hidden = NO;
     }
 }
 @end
