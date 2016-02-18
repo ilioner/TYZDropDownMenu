@@ -9,7 +9,8 @@
 #define LEFTLINE_TAG 101
 #define BOTTOM_TAG 102
 #define RIGHT_TAG 103
-
+#define BOTTOM_BUTTON_H 21.0f
+#define TOPVIEW_H 35
 
 #import "TYDropDownMenu.h"
 #import "TYDropDownMenuCollectionHeader.h"
@@ -26,11 +27,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 35)];
-        [self addSubview:_topView];
-        [self initTopButtons:frame];
+        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOPVIEW_H)];
+        _topView.backgroundColor = [UIColor whiteColor];
         
-        _bottomButton = [[UIButton alloc] initWithFrame:CGRectMake(-1, frame.size.height-20, frame.size.width+2, 21)];
+        _mainMenuView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_topView.frame), self.frame.size.width, [UIScreen mainScreen].bounds.size.height - 120)];
+        [self addSubview:_mainMenuView];
+        
+        _bottomButton = [[UIButton alloc] initWithFrame:CGRectMake(-1, CGRectGetMaxY(_mainMenuView.frame), self.frame.size.width+2, BOTTOM_BUTTON_H)];
         _bottomButton.backgroundColor = RGBA(244, 244, 244, 1);
         _bottomButton.layer.borderColor = RGB(235, 235, 235).CGColor;
         _bottomButton.layer.borderWidth = 1.0f;
@@ -40,28 +43,41 @@
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [self addSubview:_bottomButton];
         
-        _Level1TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 35, 120, frame.size.height-55) style:UITableViewStylePlain];
+        _Level1TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 120, _mainMenuView.frame.size.height) style:UITableViewStylePlain];
         _Level1TableView.dataSource = self;
         _Level1TableView.delegate = self;
         _Level1TableView.showsVerticalScrollIndicator = NO;
-        [self addSubview:_Level1TableView];
+        _Level1TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_mainMenuView addSubview:_Level1TableView];
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         
-        _subCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_Level1TableView.frame), 35, frame.size.width-CGRectGetMaxX(_Level1TableView.frame), CGRectGetHeight(_Level1TableView.frame)) collectionViewLayout:flowLayout];
+        _subCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_Level1TableView.frame), 0, _mainMenuView.frame.size.width-CGRectGetMaxX(_Level1TableView.frame), CGRectGetHeight(_Level1TableView.frame)) collectionViewLayout:flowLayout];
         _subCollectionView.dataSource = self;
         _subCollectionView.delegate = self;
         _subCollectionView.backgroundColor = BACKGROUND_WHITE_COLOR;
-        [self addSubview:_subCollectionView];
+        [_mainMenuView addSubview:_subCollectionView];
         [self loadConfig];
-        self.backgroundColor = BACKGROUND_WHITE_COLOR;
+        self.backgroundColor = [UIColor blueColor];
         
+        
+        [self addSubview:_topView];
+        [self initTopButtons:self.frame];
+        self.clipsToBounds = YES;
         _currentKind = DropDownMenuHidden;
         _currentStyleKind = kStyle_grid;
-        
     }
     return self;
 }
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    _bottomButton.frame = CGRectMake(-1, self.frame.size.height-20, self.frame.size.width+2, BOTTOM_BUTTON_H);
+}
+
+#pragma mark -
+#pragma mark - privateMethod -
 
 - (void)initTopButtons:(CGRect)frame
 {
@@ -154,10 +170,26 @@
         [_kind setStatus:DropDownMenuDown];
         [_level setStatus:DropDownMenuDown];
     }
-    
+    [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
     [self.delegate menu:self showWithStatus:_currentKind];
 }
 
+- (void)menuDisplayOrNotBy:(TYDropDownMenuShowKind)showKind currentItem:(TYDropDownTopItem *)item
+{
+    __block CGRect rect = self.frame;
+    [UIView animateWithDuration:0.3f animations:^{
+        if ( _currentKind == DropDownMenuShow) {
+            rect.size.height = 385.0f;
+        }else{
+            rect.size.height = 35.0f;
+        }
+        self.frame = rect;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+#pragma mark
 #pragma mark - UITableViewDataSource,UITableViewDelegate -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -171,7 +203,6 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@",_level_1_data_array[indexPath.row]];
     cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
@@ -266,7 +297,7 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(2, 5, 2, 5);
+    return UIEdgeInsetsMake(10, 5, 2, 5);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -277,7 +308,7 @@
 #pragma mark - TYDropDownTopItemDelegate -
 - (void)onItemClick:(TYDropDownTopItem *)item
 {
-//    ALLog(@"")
+    _currentItem = item;
     if (item == _all) {
         [self buttonClick];
     }

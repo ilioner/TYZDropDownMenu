@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "TYDropDownMenu.h"
-@interface ViewController ()
+@interface ViewController ()<TYDropDownMenuDelegate>
 {
     NSDictionary *_dic;
 }
@@ -33,7 +33,7 @@
 }
 
 - (void)initDropDownMenu{
-    TYDropDownMenu *menu = [[TYDropDownMenu alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 300)];
+    TYDropDownMenu *menu = [[TYDropDownMenu alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 35)];
     menu.dataSource = _dic.mutableCopy;
     [self.view addSubview:menu];
 }

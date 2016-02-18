@@ -28,6 +28,7 @@ typedef enum : NSUInteger {
     UITableView *_Level1TableView;
     UICollectionView *_subCollectionView;
     UIView *_topView;
+    UIView *_mainMenuView;
     UIButton *_bottomButton;
     TYDropDownMenuShowKind _currentKind;
     TYDropDownMenuStyleChangeKind _currentStyleKind;
@@ -36,6 +37,7 @@ typedef enum : NSUInteger {
     TYDropDownTopItem *_new;
     TYDropDownTopItem *_kind;
     TYDropDownTopItem *_level;
+    TYDropDownTopItem *_currentItem;
     UIButton *_styleButton;
 }
 @property (nonatomic, weak) id<TYDropDownMenuDelegate> delegate;
