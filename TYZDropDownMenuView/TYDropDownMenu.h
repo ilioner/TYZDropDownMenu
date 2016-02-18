@@ -18,9 +18,9 @@ typedef enum : NSUInteger {
     kStyle_list
 } TYDropDownMenuStyleChangeKind;
 
-#define MENU_FRO_NEW    @[@"最新",@"最热"]
-#define MENU_FRO_CATE   @[@"全部",@"知识精讲",@"项目实践"]
-#define MENU_FOR_LEVEL  @[@"全部",@"初级",@"中级",@"高级"]
+#define MENU_FRO_NEW    @[@"最新",@"最热",@"收起"]
+#define MENU_FRO_CATE   @[@"全部",@"知识精讲",@"项目实践",@"收起"]
+#define MENU_FOR_LEVEL  @[@"全部",@"初级",@"中级",@"高级",@"收起"]
 
 @protocol TYDropDownMenuDelegate;
 @interface TYDropDownMenu : UIView

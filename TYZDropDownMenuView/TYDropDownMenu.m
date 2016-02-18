@@ -10,7 +10,8 @@
 #define BOTTOM_TAG 102
 #define RIGHT_TAG 103
 #define BOTTOM_BUTTON_H 21.0f
-#define TOPVIEW_H 35
+#define TOPVIEW_H 35.0f
+#define ROW_H 30.0f
 
 #import "TYDropDownMenu.h"
 #import "TYDropDownMenuCollectionHeader.h"
@@ -50,13 +51,7 @@
         _Level1TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_mainMenuView addSubview:_Level1TableView];
         
-        _otherMenuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, _mainMenuView.frame.size.width, 0) style:UITableViewStylePlain];
-        _otherMenuTableView.dataSource = self;
-        _otherMenuTableView.delegate = self;
-        _otherMenuTableView.showsVerticalScrollIndicator = NO;
-        _otherMenuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_mainMenuView addSubview:_otherMenuTableView];
-        _otherMenuTableView.hidden = YES;
+        
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         
@@ -66,6 +61,14 @@
         _subCollectionView.backgroundColor = BACKGROUND_WHITE_COLOR;
         [_mainMenuView addSubview:_subCollectionView];
         [self loadConfig];
+        
+        _otherMenuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 35, _mainMenuView.frame.size.width, 64) style:UITableViewStylePlain];
+        _otherMenuTableView.dataSource = self;
+        _otherMenuTableView.delegate = self;
+        _otherMenuTableView.scrollEnabled = NO;
+        _otherMenuTableView.showsVerticalScrollIndicator = NO;
+        _otherMenuTableView.rowHeight = ROW_H;
+        [self addSubview:_otherMenuTableView];
         
         [self addSubview:_topView];
         [self initTopButtons:self.frame];
@@ -183,18 +186,36 @@
         [_new setStatus:DropDownMenuUp];
         [_kind setStatus:DropDownMenuUp];
         [_level setStatus:DropDownMenuUp];
+        _mainMenuView.hidden = NO;
+        [_Level1TableView reloadData];
+        _otherMenuTableView.hidden = YES;
     }else if (_currentItem == _new){
         [_all setStatus:DropDownMenuUp];
         [_kind setStatus:DropDownMenuUp];
         [_level setStatus:DropDownMenuUp];
+        _mainMenuView.hidden = YES;
+        _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_NEW.count*ROW_H);
+        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
+        _otherMenuTableView.hidden = NO;
+         [_otherMenuTableView reloadData];
     }else if (_currentItem == _kind){
         [_all setStatus:DropDownMenuUp];
         [_new setStatus:DropDownMenuUp];
         [_level setStatus:DropDownMenuUp];
+        _mainMenuView.hidden = YES;
+        _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_CATE.count*ROW_H);
+        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
+        _otherMenuTableView.hidden = NO;
+        [_otherMenuTableView reloadData];
     }else if (_currentItem == _level){
         [_all setStatus:DropDownMenuUp];
         [_new setStatus:DropDownMenuUp];
         [_kind setStatus:DropDownMenuUp];
+        _mainMenuView.hidden = YES;
+        _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FOR_LEVEL.count*ROW_H);
+        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
+        _otherMenuTableView.hidden = NO;
+        [_otherMenuTableView reloadData];
     }
     
     [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
@@ -206,7 +227,15 @@
     __block CGRect rect = self.frame;
     [UIView animateWithDuration:0.15f animations:^{
         if ( _currentKind == DropDownMenuShow) {
-            rect.size.height = 385.0f;
+            if (item == _new) {
+                rect.size.height = MENU_FRO_NEW.count*ROW_H+35;
+            }else if (item == _kind){
+                rect.size.height = MENU_FRO_CATE.count*ROW_H+35;
+            }else if (item == _level){
+                rect.size.height = MENU_FOR_LEVEL.count*ROW_H+35;
+            }else if (item == _all){
+                rect.size.height = 385.0f;
+            }
         }else{
             rect.size.height = 35.0f;
         }
@@ -225,65 +254,104 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellId = @"Cate_1_CellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",_level_1_data_array[indexPath.row]];
-    cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
-    cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    
-    if ([cell viewWithTag:BOTTOM_TAG] == nil && [cell viewWithTag:RIGHT_TAG] == nil && [cell viewWithTag:LEFTLINE_TAG] == nil) {
-        UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(cell.frame)-1, 0, 1, CGRectGetHeight(cell.frame))];
-        rightLine.backgroundColor = RGBA(217, 217, 217, 1);
-        rightLine.tag = RIGHT_TAG;
+    if (tableView != _otherMenuTableView) {
+        static NSString *cellId = @"Cate_1_CellId";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        }
         
-        UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cell.frame)-1, CGRectGetWidth(cell.frame), 1)];
-        bottomLine.backgroundColor = RGBA(217, 217, 217, 1);
-        bottomLine.tag = BOTTOM_TAG;
-        UIView *leftLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, cell.frame.size.height)];
-        leftLineView.backgroundColor = RGB(163, 44, 37);
-        leftLineView.tag = LEFTLINE_TAG;
-        [cell addSubview:bottomLine];
-        [cell addSubview:rightLine];
-        [cell bringSubviewToFront:bottomLine];
-        [cell bringSubviewToFront:rightLine];
-        [cell addSubview:leftLineView];
-        leftLineView.hidden = YES;
-    }
-
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row == _currentSelectLevel1) {
-        cell.backgroundColor = BACKGROUND_WHITE_COLOR;
-        [cell viewWithTag:LEFTLINE_TAG].hidden = NO;
-        cell.textLabel.textColor = RGB(163, 44, 37);
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",_level_1_data_array[indexPath.row]];
+        cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        
+        if ([cell viewWithTag:BOTTOM_TAG] == nil && [cell viewWithTag:RIGHT_TAG] == nil && [cell viewWithTag:LEFTLINE_TAG] == nil) {
+            UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(cell.frame)-1, 0, 1, CGRectGetHeight(cell.frame))];
+            rightLine.backgroundColor = RGBA(217, 217, 217, 1);
+            rightLine.tag = RIGHT_TAG;
+            
+            UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cell.frame)-1, CGRectGetWidth(cell.frame), 1)];
+            bottomLine.backgroundColor = RGBA(217, 217, 217, 1);
+            bottomLine.tag = BOTTOM_TAG;
+            UIView *leftLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, cell.frame.size.height)];
+            leftLineView.backgroundColor = RGB(163, 44, 37);
+            leftLineView.tag = LEFTLINE_TAG;
+            [cell addSubview:bottomLine];
+            [cell addSubview:rightLine];
+            [cell bringSubviewToFront:bottomLine];
+            [cell bringSubviewToFront:rightLine];
+            [cell addSubview:leftLineView];
+            leftLineView.hidden = YES;
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == _currentSelectLevel1) {
+            cell.backgroundColor = BACKGROUND_WHITE_COLOR;
+            [cell viewWithTag:LEFTLINE_TAG].hidden = NO;
+            cell.textLabel.textColor = RGB(163, 44, 37);
+        }else{
+            cell.backgroundColor = BACKGROUND_GRAY_COLOR;
+            [cell viewWithTag:LEFTLINE_TAG].hidden = YES;
+            cell.textLabel.textColor = RGB(0, 0, 0);
+        }
+        
+        return cell;
     }else{
-        cell.backgroundColor = BACKGROUND_GRAY_COLOR;
-        [cell viewWithTag:LEFTLINE_TAG].hidden = YES;
-        cell.textLabel.textColor = RGB(0, 0, 0);
+        static NSString *cellId = @"menu_CellId";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        }
+        
+        NSString *itemName = nil;
+        if (_currentItem == _new) {
+            itemName = MENU_FRO_NEW[indexPath.row];
+        }else if (_currentItem == _kind){
+            itemName = MENU_FRO_CATE[indexPath.row];
+        }else if (_currentItem == _level) {
+            itemName = MENU_FOR_LEVEL[indexPath.row];
+        }
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",itemName];
+        cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        return cell;
     }
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44.0f;
+    
+    if (_currentItem == _all) {
+        return 44.0f;
+    }else{
+        return ROW_H;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _level_1_data_array.count;
+    if (_currentItem == _all) {
+        return _level_1_data_array.count;
+    }else if (_currentItem == _new) {
+        return MENU_FRO_NEW.count;
+    }else if (_currentItem == _kind){
+        return MENU_FRO_CATE.count;
+    }else if (_currentItem == _level) {
+        return MENU_FOR_LEVEL.count;
+    }else{
+        return 0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _currentSelectLevel1 = indexPath.row;
-    [tableView reloadData];
-    [self loadCurrentCollectionDataArrayByKey:_level_1_data_array[indexPath.row]];
-    [_subCollectionView reloadData];
+    if (_currentItem == _all) {
+        _currentSelectLevel1 = indexPath.row;
+        [tableView reloadData];
+        [self loadCurrentCollectionDataArrayByKey:_level_1_data_array[indexPath.row]];
+        [_subCollectionView reloadData];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource,UICollectionViewDelegate -
