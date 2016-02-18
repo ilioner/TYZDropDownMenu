@@ -87,12 +87,16 @@
     [_topView addSubview:_level];
     
     _styleButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_level.frame), 0, 36, 36)];
-    [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_grid"] forState:UIControlStateNormal];
+    [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_list"] forState:UIControlStateNormal];
     [_styleButton addTarget:self action:@selector(onStyleChanged:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_styleButton];
-    UIView *line_view = [[UIView alloc] initWithFrame:CGRectMake(0, 34, frame.size.width, 1)];
-    line_view.backgroundColor = RGB(235, 235, 235);
-    [_topView addSubview:line_view];
+    UIView *line_view_bottom = [[UIView alloc] initWithFrame:CGRectMake(0, 34, frame.size.width, 1)];
+    line_view_bottom.backgroundColor = RGB(235, 235, 235);
+    [_topView addSubview:line_view_bottom];
+    UIView *line_view_top = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 1)];
+    line_view_top.backgroundColor = RGB(235, 235, 235);
+    [_topView addSubview:line_view_top];
+    _topView.clipsToBounds = YES;
 }
 
 - (void)setDataSource:(NSMutableDictionary *)dataSource
