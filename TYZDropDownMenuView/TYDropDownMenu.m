@@ -76,8 +76,7 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     _bottomButton.frame = CGRectMake(-1, self.frame.size.height-20, self.frame.size.width+2, BOTTOM_BUTTON_H);
 }
@@ -85,8 +84,7 @@
 #pragma mark -
 #pragma mark - privateMethod -
 
-- (void)initTopButtons:(CGRect)frame
-{
+- (void)initTopButtons:(CGRect)frame{
     _currenSelectKind = @"全部类别";
     _all= [[TYDropDownTopItem alloc] initWithFrame:CGRectMake(0, 0, frame.size.width/4-9, 36) withLineSide:kSideLine_right];
     _all.delegate = self;
@@ -121,8 +119,7 @@
     _topView.clipsToBounds = YES;
 }
 
-- (void)setDataSource:(NSMutableDictionary *)dataSource
-{
+- (void)setDataSource:(NSMutableDictionary *)dataSource{
     _dataSource = dataSource;
     _level_1_data_array = [dataSource.allKeys sortedArrayUsingComparator:^(id a, id b)
                            {
@@ -131,8 +128,7 @@
     [_Level1TableView reloadData];
 }
 
-- (void)onStyleChanged:(UIButton *)sender
-{
+- (void)onStyleChanged:(UIButton *)sender{
     if (_currentStyleKind == kStyle_grid) {
         _currentStyleKind = kStyle_list;
         [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_grid"] forState:UIControlStateNormal];
@@ -142,21 +138,18 @@
     }
 }
 
-- (void)loadCurrentCollectionDataArrayByKey:(NSString *)key
-{
+- (void)loadCurrentCollectionDataArrayByKey:(NSString *)key{
     _current_collectionData_array = self.dataSource[key];
 }
 
-- (void)loadConfig
-{
+- (void)loadConfig{
     _currentSelectLevel1 = 0;
     [self configCollectionCell];
     [_Level1TableView reloadData];
     [_Level1TableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
-- (void)configCollectionCell
-{
+- (void)configCollectionCell{
     static NSString *collectionCellId = @"collectionCellId";
     [_subCollectionView registerNib:[UINib nibWithNibName:@"TYDropDownMenuCell" bundle:nil] forCellWithReuseIdentifier:collectionCellId];
     static NSString *collectionHeaderId = @"collectionHeaderId";
@@ -165,8 +158,7 @@
     [_subCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 }
 
-- (void)buttonClick
-{
+- (void)buttonClick{
     if (_currentKind == DropDownMenuHidden) {
         _currentKind = DropDownMenuShow;
     }else{
@@ -176,6 +168,35 @@
         [_kind setStatus:DropDownMenuDown];
         [_level setStatus:DropDownMenuDown];
     }
+    [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
+    [self.delegate menu:self showWithStatus:_currentKind];
+}
+
+- (void)itemClick{
+    if (_currentKind == DropDownMenuHidden) {
+        _currentKind = DropDownMenuShow;
+    }else{
+        _currentKind = DropDownMenuHidden;
+    }
+    
+    if (_currentItem == _all) {
+        [_new setStatus:DropDownMenuUp];
+        [_kind setStatus:DropDownMenuUp];
+        [_level setStatus:DropDownMenuUp];
+    }else if (_currentItem == _new){
+        [_all setStatus:DropDownMenuUp];
+        [_kind setStatus:DropDownMenuUp];
+        [_level setStatus:DropDownMenuUp];
+    }else if (_currentItem == _kind){
+        [_all setStatus:DropDownMenuUp];
+        [_new setStatus:DropDownMenuUp];
+        [_level setStatus:DropDownMenuUp];
+    }else if (_currentItem == _level){
+        [_all setStatus:DropDownMenuUp];
+        [_new setStatus:DropDownMenuUp];
+        [_kind setStatus:DropDownMenuUp];
+    }
+    
     [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
     [self.delegate menu:self showWithStatus:_currentKind];
 }
@@ -315,7 +336,7 @@
 - (void)onItemClick:(TYDropDownTopItem *)item
 {
     _currentItem = item;
-    [self buttonClick];
+    [self itemClick];
     if (item != _all) {
         _mainMenuView.hidden = YES;
         _bottomButton.hidden = YES;
