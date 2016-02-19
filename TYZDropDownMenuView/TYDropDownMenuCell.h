@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TYDropDownMenuCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-
+@property (strong, nonatomic) UILabel *nameLabel;
+- (void)configCell:(NSString *)titleString;
 @end

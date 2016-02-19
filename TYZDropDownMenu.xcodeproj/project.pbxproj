@@ -17,7 +17,6 @@
 		9C6CFCB01C717902008FA57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6CFCAE1C717902008FA57C /* LaunchScreen.storyboard */; };
 		9C6CFCB81C717969008FA57C /* DemoData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C6CFCB71C717969008FA57C /* DemoData.plist */; };
 		9CDACD291C743A5B0050DC61 /* TYDropDownMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */; };
-		9CDACD2A1C743A5B0050DC61 /* TYDropDownMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */; };
 		9CDACD2C1C743A5B0050DC61 /* TYDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */; };
 		9CDACD2F1C743A5B0050DC61 /* TYDropDownTopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */; };
 		9CDACD321C7442D80050DC61 /* arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD311C7442D80050DC61 /* arrow_down@2x.png */; };
@@ -40,7 +39,6 @@
 		9C6CFCB71C717969008FA57C /* DemoData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DemoData.plist; sourceTree = "<group>"; };
 		9CDACD1D1C743A5B0050DC61 /* TYDropDownMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenuCell.h; sourceTree = "<group>"; };
 		9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenuCell.m; sourceTree = "<group>"; };
-		9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TYDropDownMenuCell.xib; sourceTree = "<group>"; };
 		9CDACD221C743A5B0050DC61 /* TYDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenu.h; sourceTree = "<group>"; };
 		9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenu.m; sourceTree = "<group>"; };
 		9CDACD271C743A5B0050DC61 /* TYDropDownTopItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownTopItem.h; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 				9CDACD311C7442D80050DC61 /* arrow_down@2x.png */,
 				9CDACD1D1C743A5B0050DC61 /* TYDropDownMenuCell.h */,
 				9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */,
-				9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */,
 				9CDACD221C743A5B0050DC61 /* TYDropDownMenu.h */,
 				9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */,
 				9CDACD271C743A5B0050DC61 /* TYDropDownTopItem.h */,
@@ -179,7 +176,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CDACD2A1C743A5B0050DC61 /* TYDropDownMenuCell.xib in Resources */,
 				9CDACD321C7442D80050DC61 /* arrow_down@2x.png in Resources */,
 				9C6CFCB01C717902008FA57C /* LaunchScreen.storyboard in Resources */,
 				9C03C97B1C755B70005ACB44 /* drop_list@2x.png in Resources */,

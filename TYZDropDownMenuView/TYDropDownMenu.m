@@ -8,7 +8,7 @@
 #import "TYDropDownMenu.h"
 #import "TYDropDownMenuCell.h"
 #import "TYDropDownMenuConfig.h"
-
+static NSString *collectionCellId = @"collectionCellId";
 @interface TYDropDownMenu()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,TYDropDownTopItemDelegate>
 
 @end
@@ -148,8 +148,7 @@
 }
 
 - (void)configCollectionCell{
-    static NSString *collectionCellId = @"collectionCellId";
-    [_subCollectionView registerNib:[UINib nibWithNibName:@"TYDropDownMenuCell" bundle:nil] forCellWithReuseIdentifier:collectionCellId];
+    [_subCollectionView registerClass:[TYDropDownMenuCell class] forCellWithReuseIdentifier:collectionCellId];
 }
 
 - (void)buttonClick{
@@ -221,7 +220,6 @@
             }else if (item == _all){
                 if (_all.status == DropDownMenuUp) {
                     [_Level1TableView reloadData];
-                    [self tableView:_Level1TableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                     rect.size.height = 385.0f;
                 }else{
                     rect.size.height = TOPVIEW_H;
@@ -230,6 +228,12 @@
                 rect.size.height = TOPVIEW_H;
             }
         self.frame = rect;
+    }completion:^(BOOL finished) {
+        if (item == _all) {
+            if (_all.status == DropDownMenuUp) {
+                [self tableView:_Level1TableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            }
+        }
     }];
 }
 
@@ -412,10 +416,10 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *collectionCellId = @"collectionCellId";
-    TYDropDownMenuCell *cell = (TYDropDownMenuCell *)[collectionView dequeueReusableCellWithReuseIdentifier:collectionCellId forIndexPath:indexPath];
     
-    cell.nameLabel.text = _current_collectionData_array[indexPath.row];
+    TYDropDownMenuCell *cell = (TYDropDownMenuCell *)[collectionView dequeueReusableCellWithReuseIdentifier:collectionCellId forIndexPath:indexPath];
+    NSString *itemName = [NSString stringWithFormat:@"%@",_current_collectionData_array[indexPath.row]];
+    [cell configCell:itemName];
     return cell;
 }
 
@@ -429,11 +433,11 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    TYDropDownMenuCell *cell = (TYDropDownMenuCell *)([[NSBundle mainBundle] loadNibNamed:@"TYDropDownMenuCell" owner:self options:nil][0]);
-    cell.nameLabel.text = _current_collectionData_array[indexPath.item];
-    cell.nameLabel.numberOfLines = 0;
-    [cell.nameLabel sizeToFit];
-    return CGSizeMake(collectionView.frame.size.width/2-10, cell.nameLabel.frame.size.height*1.2);
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, collectionView.frame.size.width/2-10, 40)];
+    label.text = _current_collectionData_array[indexPath.item];
+    label.numberOfLines = 0;
+    [label sizeToFit];
+    return CGSizeMake(collectionView.frame.size.width/2-10, label.frame.size.height*1.2);
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
