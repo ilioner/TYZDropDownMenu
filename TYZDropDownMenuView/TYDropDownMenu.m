@@ -246,6 +246,7 @@
     if (tableView != _otherMenuTableView) {
         static NSString *cellId = @"Cate_1_CellId";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         }
