@@ -30,7 +30,7 @@
         _bottomButton.backgroundColor = RGBA(244, 244, 244, 1);
         _bottomButton.layer.borderColor = RGB(235, 235, 235).CGColor;
         _bottomButton.layer.borderWidth = 1.0f;
-        [_bottomButton setTitle:@"收起" forState:UIControlStateNormal];
+        [_bottomButton setTitle:CLOSEBUTTON_TITLE forState:UIControlStateNormal];
         [_bottomButton setTitleColor:RGB(77, 77, 77) forState:UIControlStateNormal];
         [_bottomButton addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -52,7 +52,7 @@
         [_mainMenuView addSubview:_subCollectionView];
         [self loadConfig];
         
-        _otherMenuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 35, _mainMenuView.frame.size.width, 64) style:UITableViewStylePlain];
+        _otherMenuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOPVIEW_H, _mainMenuView.frame.size.width, 64) style:UITableViewStylePlain];
         _otherMenuTableView.dataSource = self;
         _otherMenuTableView.delegate = self;
         _otherMenuTableView.scrollEnabled = NO;
@@ -130,6 +130,13 @@
         _currentStyleKind = kStyle_grid;
         [_styleButton setBackgroundImage:[UIImage imageNamed:@"drop_list"] forState:UIControlStateNormal];
     }
+    [_all setStatus:DropDownMenuUp];
+    [_new setStatus:DropDownMenuUp];
+    [_kind setStatus:DropDownMenuUp];
+    [_level setStatus:DropDownMenuUp];
+    
+    [self menuDisplayOrNotByCurrentItem:nil];
+    [self.delegate menu:self styleChanged:_currentStyleKind];
 }
 
 - (void)loadCurrentCollectionDataArrayByKey:(NSString *)key{
@@ -144,10 +151,6 @@
 - (void)configCollectionCell{
     static NSString *collectionCellId = @"collectionCellId";
     [_subCollectionView registerNib:[UINib nibWithNibName:@"TYDropDownMenuCell" bundle:nil] forCellWithReuseIdentifier:collectionCellId];
-    static NSString *collectionHeaderId = @"collectionHeaderId";
-    static NSString *footerId = @"collectionFooterId";
-    [_subCollectionView registerNib:[UINib nibWithNibName:@"TYDropDownMenuCollectionHeader" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:collectionHeaderId];
-    [_subCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 }
 
 - (void)buttonClick{
@@ -159,8 +162,7 @@
 }
 
 - (void)itemClick{
-    
-    
+
     if (_currentItem == _all) {
         [_new setStatus:DropDownMenuUp];
         [_kind setStatus:DropDownMenuUp];
@@ -174,22 +176,19 @@
             [_all setStatus:DropDownMenuUp];
             [_kind setStatus:DropDownMenuUp];
             [_level setStatus:DropDownMenuUp];
-            _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_NEW.count*ROW_H);
+            _otherMenuTableView.frame = CGRectMake(0, TOPVIEW_H, _mainMenuView.frame.size.width, MENU_FRO_NEW.count*ROW_H);
         }else if (_currentItem == _kind){
             [_all setStatus:DropDownMenuUp];
             [_new setStatus:DropDownMenuUp];
             [_level setStatus:DropDownMenuUp];
-            _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_CATE.count*ROW_H);
+            _otherMenuTableView.frame = CGRectMake(0, TOPVIEW_H, _mainMenuView.frame.size.width, MENU_FRO_CATE.count*ROW_H);
         }else if (_currentItem == _level){
             [_all setStatus:DropDownMenuUp];
             [_new setStatus:DropDownMenuUp];
             [_kind setStatus:DropDownMenuUp];
-            _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FOR_LEVEL.count*ROW_H);
+            _otherMenuTableView.frame = CGRectMake(0, TOPVIEW_H, _mainMenuView.frame.size.width, MENU_FOR_LEVEL.count*ROW_H);
             
         }
-        CGRect rect = self.frame;
-        rect.size.height = 35.0f;
-        self.frame = rect;
         _mainMenuView.hidden = YES;
         _otherMenuTableView.backgroundColor = [UIColor whiteColor];
         _otherMenuTableView.hidden = NO;
@@ -206,28 +205,30 @@
     [UIView animateWithDuration:0.3f animations:^{
             if (item == _new) {
                 if (_new.status == DropDownMenuUp) {
-                    rect.size.height = MENU_FRO_NEW.count*ROW_H+35;
+                    rect.size.height = MENU_FRO_NEW.count*ROW_H+TOPVIEW_H;
                 }else{
-                    rect.size.height = 35.0f;
+                    rect.size.height = TOPVIEW_H;
                 }
             }else if (item == _kind){
                 if (_kind.status == DropDownMenuUp) {
-                    rect.size.height = MENU_FRO_CATE.count*ROW_H+35;
+                    rect.size.height = MENU_FRO_CATE.count*ROW_H+TOPVIEW_H;
                 }else{
-                    rect.size.height = 35.0f;
+                    rect.size.height = TOPVIEW_H;
                 }
             }else if (item == _level){
                 if (_level.status == DropDownMenuUp) {
-                    rect.size.height = MENU_FOR_LEVEL.count*ROW_H+35;
+                    rect.size.height = MENU_FOR_LEVEL.count*ROW_H+TOPVIEW_H;
                 }else{
-                    rect.size.height = 35.0f;
+                    rect.size.height = TOPVIEW_H;
                 }
             }else if (item == _all){
                 if (_all.status == DropDownMenuUp) {
                     rect.size.height = 385.0f;
                 }else{
-                    rect.size.height = 35.0f;
+                    rect.size.height = TOPVIEW_H;
                 }
+            }else{
+                rect.size.height = TOPVIEW_H;
             }
         self.frame = rect;
     }];
@@ -294,7 +295,7 @@
         NSString *itemName = nil;
         if (_currentItem == _new) {
             itemName = MENU_FRO_NEW[indexPath.row];
-            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:@"收起"]) {
+            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 cell.backgroundColor = RGBA(244, 244, 244, 1);
             }else{
@@ -303,7 +304,7 @@
             }
         }else if (_currentItem == _kind){
             itemName = MENU_FRO_CATE[indexPath.row];
-            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:@"收起"]) {
+            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 cell.backgroundColor = RGBA(244, 244, 244, 1);
             }else{
@@ -312,7 +313,7 @@
             }
         }else if (_currentItem == _level) {
             itemName = MENU_FOR_LEVEL[indexPath.row];
-            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:@"收起"]) {
+            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 cell.backgroundColor = RGBA(244, 244, 244, 1);
             }else{
@@ -320,7 +321,7 @@
                 cell.backgroundColor = [UIColor whiteColor];
             }
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = [NSString stringWithFormat:@"%@",itemName];
         cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
         
@@ -335,21 +336,21 @@
         return 44.0f;
     }else{
         if (_currentItem == _new) {
-            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:@"收起"]) {
+            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
                 return BOTTOM_BUTTON_H;
             }else{
                 return ROW_H;
             }
         }else if (_currentItem ==_kind){
         
-            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:@"收起"]) {
+            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
                 return BOTTOM_BUTTON_H;
             }else{
                 return ROW_H;
             }
             
         }else{
-            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:@"收起"]) {
+            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
                 return BOTTOM_BUTTON_H;
             }else{
                 return ROW_H;
@@ -380,6 +381,21 @@
         [tableView reloadData];
         [self loadCurrentCollectionDataArrayByKey:_level_1_data_array[indexPath.row]];
         [_subCollectionView reloadData];
+    }else{
+        if (_currentItem == _new) {
+            if ([MENU_FRO_NEW[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
+               [_new setStatus:DropDownMenuDown];
+            }
+        }else if (_currentItem == _kind){
+            if ([MENU_FRO_CATE[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
+                [_kind setStatus:DropDownMenuDown];
+            }
+        }else if (_currentItem == _level) {
+            if ([MENU_FOR_LEVEL[indexPath.row] isEqualToString:CLOSEBUTTON_TITLE]) {
+                [_level setStatus:DropDownMenuDown];
+            }
+        }
+        [self menuDisplayOrNotByCurrentItem:_currentItem];
     }
 }
 

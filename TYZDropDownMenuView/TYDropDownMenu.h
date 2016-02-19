@@ -21,6 +21,7 @@ typedef enum : NSUInteger {
 #define TOPVIEW_H                35.0f
 #define ROW_H                    30.0f
 
+#define CLOSEBUTTON_TITLE        @"收起"
 #define MENU_FRO_NEW             @[@"最新",@"最热",@"收起"]
 #define MENU_FRO_CATE            @[@"全部",@"知识精讲",@"项目实践",@"收起"]
 #define MENU_FOR_LEVEL           @[@"全部",@"初级",@"中级",@"高级",@"收起"]
@@ -60,5 +61,13 @@ typedef enum : NSUInteger {
 @protocol TYDropDownMenuDelegate <NSObject>
 
 - (void)menu:(TYDropDownMenu *)menu;
+
+/**
+ *  点击切换列表还是网格视图触发代理
+ *
+ *  @param menu  下拉menu本身
+ *  @param style 视图显示状态
+ */
+- (void)menu:(TYDropDownMenu *)menu styleChanged:(TYDropDownMenuStyleChangeKind)style;
 
 @end
