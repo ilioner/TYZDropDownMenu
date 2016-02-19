@@ -6,7 +6,6 @@
 //  Copyright © 2016年 AiLi.Technology Co. All rights reserved.
 //
 #import "TYDropDownMenu.h"
-#import "TYDropDownMenuCollectionHeader.h"
 #import "TYDropDownMenuCell.h"
 #import "TYDropDownMenuConfig.h"
 

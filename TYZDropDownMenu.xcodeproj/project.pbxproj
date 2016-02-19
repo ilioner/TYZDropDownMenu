@@ -19,8 +19,6 @@
 		9CDACD291C743A5B0050DC61 /* TYDropDownMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD1E1C743A5B0050DC61 /* TYDropDownMenuCell.m */; };
 		9CDACD2A1C743A5B0050DC61 /* TYDropDownMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */; };
 		9CDACD2C1C743A5B0050DC61 /* TYDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */; };
-		9CDACD2D1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD251C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m */; };
-		9CDACD2E1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD261C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib */; };
 		9CDACD2F1C743A5B0050DC61 /* TYDropDownTopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */; };
 		9CDACD321C7442D80050DC61 /* arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD311C7442D80050DC61 /* arrow_down@2x.png */; };
 		9CDACD341C7442DF0050DC61 /* arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDACD331C7442DF0050DC61 /* arrow_up@2x.png */; };
@@ -45,9 +43,6 @@
 		9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TYDropDownMenuCell.xib; sourceTree = "<group>"; };
 		9CDACD221C743A5B0050DC61 /* TYDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenu.h; sourceTree = "<group>"; };
 		9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenu.m; sourceTree = "<group>"; };
-		9CDACD241C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenuCollectionHeader.h; sourceTree = "<group>"; };
-		9CDACD251C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownMenuCollectionHeader.m; sourceTree = "<group>"; };
-		9CDACD261C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TYDropDownMenuCollectionHeader.xib; sourceTree = "<group>"; };
 		9CDACD271C743A5B0050DC61 /* TYDropDownTopItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYDropDownTopItem.h; sourceTree = "<group>"; };
 		9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYDropDownTopItem.m; sourceTree = "<group>"; };
 		9CDACD301C743C860050DC61 /* TYDropDownMenuConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYDropDownMenuConfig.h; sourceTree = "<group>"; };
@@ -120,9 +115,6 @@
 				9CDACD1F1C743A5B0050DC61 /* TYDropDownMenuCell.xib */,
 				9CDACD221C743A5B0050DC61 /* TYDropDownMenu.h */,
 				9CDACD231C743A5B0050DC61 /* TYDropDownMenu.m */,
-				9CDACD241C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.h */,
-				9CDACD251C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m */,
-				9CDACD261C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib */,
 				9CDACD271C743A5B0050DC61 /* TYDropDownTopItem.h */,
 				9CDACD281C743A5B0050DC61 /* TYDropDownTopItem.m */,
 				9CDACD301C743C860050DC61 /* TYDropDownMenuConfig.h */,
@@ -193,7 +185,6 @@
 				9C03C97B1C755B70005ACB44 /* drop_list@2x.png in Resources */,
 				9CDACD341C7442DF0050DC61 /* arrow_up@2x.png in Resources */,
 				9C6CFCAD1C717902008FA57C /* Assets.xcassets in Resources */,
-				9CDACD2E1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.xib in Resources */,
 				9C6CFCAB1C717902008FA57C /* Main.storyboard in Resources */,
 				9C6CFCB81C717969008FA57C /* DemoData.plist in Resources */,
 				9C03C97A1C755B70005ACB44 /* drop_grid@2x.png in Resources */,
@@ -211,7 +202,6 @@
 				9C6CFCA51C717902008FA57C /* AppDelegate.m in Sources */,
 				9CDACD2F1C743A5B0050DC61 /* TYDropDownTopItem.m in Sources */,
 				9CDACD2C1C743A5B0050DC61 /* TYDropDownMenu.m in Sources */,
-				9CDACD2D1C743A5B0050DC61 /* TYDropDownMenuCollectionHeader.m in Sources */,
 				9CDACD291C743A5B0050DC61 /* TYDropDownMenuCell.m in Sources */,
 				9C6CFCA21C717902008FA57C /* main.m in Sources */,
 			);
