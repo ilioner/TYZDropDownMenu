@@ -168,8 +168,6 @@
         [_kind setStatus:DropDownMenuUp];
         [_level setStatus:DropDownMenuUp];
         _mainMenuView.hidden = NO;
-        [_Level1TableView reloadData];
-        [_Level1TableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         _otherMenuTableView.hidden = YES;
     }else{
         if (_currentItem == _new){
@@ -223,6 +221,8 @@
                 }
             }else if (item == _all){
                 if (_all.status == DropDownMenuUp) {
+                    [_Level1TableView reloadData];
+                    [self tableView:_Level1TableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                     rect.size.height = 385.0f;
                 }else{
                     rect.size.height = TOPVIEW_H;
@@ -455,6 +455,7 @@
     if (item != _all) {
         _mainMenuView.hidden = YES;
         _bottomButton.hidden = YES;
+        
     }else{
         _mainMenuView.hidden = NO;
         _bottomButton.hidden = NO;
