@@ -19,6 +19,8 @@
 @end
 @implementation TYDropDownTopItem
 
+@synthesize status = _currentStatus;
+
 - (instancetype)initWithFrame:(CGRect)frame withLineSide:(TYDropDownTopItemSideLineStyle)lineSide
 {
     self = [super initWithFrame:frame];
@@ -67,7 +69,6 @@
         }else{
             CGContextMoveToPoint(context, self.frame.size.width-1, 8);
             CGContextAddLineToPoint(context, self.frame.size.width-1, self.frame.size.height-8);
-            
         }
         CGContextStrokePath(context);
     }

@@ -5,14 +5,6 @@
 //  Created by TywinZhang on 16/2/2.
 //  Copyright © 2016年 AiLi.Technology Co. All rights reserved.
 //
-
-#define LEFTLINE_TAG 101
-#define BOTTOM_TAG 102
-#define RIGHT_TAG 103
-#define BOTTOM_BUTTON_H 21.0f
-#define TOPVIEW_H 35.0f
-#define ROW_H 30.0f
-
 #import "TYDropDownMenu.h"
 #import "TYDropDownMenuCollectionHeader.h"
 #import "TYDropDownMenuCell.h"
@@ -71,7 +63,7 @@
         [self addSubview:_topView];
         [self initTopButtons:self.frame];
         self.clipsToBounds = YES;
-        _currentKind = DropDownMenuHidden;
+        
         _currentStyleKind = kStyle_grid;
     }
     return self;
@@ -159,20 +151,15 @@
 }
 
 - (void)buttonClick{
-    if (_currentKind == DropDownMenuHidden) {
-        _currentKind = DropDownMenuShow;
-    }else{
-        _currentKind = DropDownMenuHidden;
+    if (_currentItem == _all) {
         [_all setStatus:DropDownMenuDown];
-        [_new setStatus:DropDownMenuDown];
-        [_kind setStatus:DropDownMenuDown];
-        [_level setStatus:DropDownMenuDown];
     }
-    [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
-    [self.delegate menu:self showWithStatus:_currentKind];
+    [self menuDisplayOrNotByCurrentItem:_currentItem];
+    [self.delegate menu:self];
 }
 
 - (void)itemClick{
+    
     
     if (_currentItem == _all) {
         [_new setStatus:DropDownMenuUp];
@@ -182,64 +169,67 @@
         [_Level1TableView reloadData];
         [_Level1TableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         _otherMenuTableView.hidden = YES;
-    }else if (_currentItem == _new){
-        [_all setStatus:DropDownMenuUp];
-        [_kind setStatus:DropDownMenuUp];
-        [_level setStatus:DropDownMenuUp];
-        _mainMenuView.hidden = YES;
-        _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_NEW.count*ROW_H);
-        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
-        _otherMenuTableView.hidden = NO;
-         [_otherMenuTableView reloadData];
-    }else if (_currentItem == _kind){
-        [_all setStatus:DropDownMenuUp];
-        [_new setStatus:DropDownMenuUp];
-        [_level setStatus:DropDownMenuUp];
-        _mainMenuView.hidden = YES;
-        _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_CATE.count*ROW_H);
-        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
-        _otherMenuTableView.hidden = NO;
-        [_otherMenuTableView reloadData];
-    }else if (_currentItem == _level){
-        [_all setStatus:DropDownMenuUp];
-        [_new setStatus:DropDownMenuUp];
-        [_kind setStatus:DropDownMenuUp];
-        _mainMenuView.hidden = YES;
-        _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FOR_LEVEL.count*ROW_H);
-        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
-        _otherMenuTableView.hidden = NO;
-        [_otherMenuTableView reloadData];
-    }
-    if (_currentKind == DropDownMenuHidden) {
-        _currentKind = DropDownMenuShow;
     }else{
-        _currentKind = DropDownMenuHidden;
+        if (_currentItem == _new){
+            [_all setStatus:DropDownMenuUp];
+            [_kind setStatus:DropDownMenuUp];
+            [_level setStatus:DropDownMenuUp];
+            _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_NEW.count*ROW_H);
+        }else if (_currentItem == _kind){
+            [_all setStatus:DropDownMenuUp];
+            [_new setStatus:DropDownMenuUp];
+            [_level setStatus:DropDownMenuUp];
+            _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FRO_CATE.count*ROW_H);
+        }else if (_currentItem == _level){
+            [_all setStatus:DropDownMenuUp];
+            [_new setStatus:DropDownMenuUp];
+            [_kind setStatus:DropDownMenuUp];
+            _otherMenuTableView.frame = CGRectMake(0, 35, _mainMenuView.frame.size.width, MENU_FOR_LEVEL.count*ROW_H);
+            
+        }
+        CGRect rect = self.frame;
+        rect.size.height = 35.0f;
+        self.frame = rect;
+        _mainMenuView.hidden = YES;
+        _otherMenuTableView.backgroundColor = [UIColor whiteColor];
+        _otherMenuTableView.hidden = NO;
+        [_otherMenuTableView reloadData];
     }
     
-    [self menuDisplayOrNotBy:_currentKind currentItem:_currentItem];
-    [self.delegate menu:self showWithStatus:_currentKind];
+    [self menuDisplayOrNotByCurrentItem:_currentItem];
+    [self.delegate menu:self];
 }
 
-- (void)menuDisplayOrNotBy:(TYDropDownMenuShowKind)showKind currentItem:(TYDropDownTopItem *)item
+- (void)menuDisplayOrNotByCurrentItem:(TYDropDownTopItem *)item
 {
     __block CGRect rect = self.frame;
-    [UIView animateWithDuration:0.15f animations:^{
-        if ( _currentKind == DropDownMenuShow) {
+    [UIView animateWithDuration:0.3f animations:^{
             if (item == _new) {
-                rect.size.height = MENU_FRO_NEW.count*ROW_H+35;
+                if (_new.status == DropDownMenuUp) {
+                    rect.size.height = MENU_FRO_NEW.count*ROW_H+35;
+                }else{
+                    rect.size.height = 35.0f;
+                }
             }else if (item == _kind){
-                rect.size.height = MENU_FRO_CATE.count*ROW_H+35;
+                if (_kind.status == DropDownMenuUp) {
+                    rect.size.height = MENU_FRO_CATE.count*ROW_H+35;
+                }else{
+                    rect.size.height = 35.0f;
+                }
             }else if (item == _level){
-                rect.size.height = MENU_FOR_LEVEL.count*ROW_H+35;
+                if (_level.status == DropDownMenuUp) {
+                    rect.size.height = MENU_FOR_LEVEL.count*ROW_H+35;
+                }else{
+                    rect.size.height = 35.0f;
+                }
             }else if (item == _all){
-                rect.size.height = 385.0f;
+                if (_all.status == DropDownMenuUp) {
+                    rect.size.height = 385.0f;
+                }else{
+                    rect.size.height = 35.0f;
+                }
             }
-        }else{
-            rect.size.height = 35.0f;
-        }
         self.frame = rect;
-    } completion:^(BOOL finished) {
-        
     }];
 }
 
@@ -417,6 +407,7 @@
 {
     _currenSelectKind = _current_collectionData_array[indexPath.item];
     [_all setItemTitle:_currenSelectKind];
+    [_all setStatus:DropDownMenuDown];
     [self buttonClick];
 }
 
